@@ -1,7 +1,6 @@
 import React from 'react';
 import Compteur from './Compteur'
 import Message from './Message';
-import Login from './Login';
 
 function App() {
   return (
@@ -10,8 +9,7 @@ function App() {
     <div className="App">
       <h1>Bienvenue sur notre site</h1>
       <Compteur />
-      <Message text="Ceci est un message important" />
-      <Login />
+      <Message texte="Ceci est un message important" />
     </div>
   );
 }

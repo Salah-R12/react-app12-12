@@ -1,5 +1,5 @@
-# Étape 1: Construire l'environnement
-FROM node:16 AS builder
+# Utiliser une image Node
+FROM node:16
 
 # Définir le répertoire de travail dans le conteneur
 WORKDIR /app
@@ -13,18 +13,8 @@ RUN npm install
 # Copier le reste du code source
 COPY . .
 
-# Construire l'application pour la production
-RUN npm run build
+# Exposer le port 8000 (port par défaut pour Create React App)
+EXPOSE 8080
 
-# Étape 2: Préparer l'environnement de production
-FROM nginx:alpine
-
-# Copier les fichiers de build depuis l'étape de construction à l'environnement de production
-COPY --from=builder /app/build /usr/share/nginx/html
-
-# Exposer le port 80
-EXPOSE 80
-
-# Lancer nginx
-CMD ["nginx", "-g", "daemon off;"]
-
+# Lancer l'application avec npm start
+CMD ["npm", "start"]
